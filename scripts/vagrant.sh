@@ -7,7 +7,7 @@ apt-get update
 apt-get install git puppet -y
 cd /etc/puppet
 git init
-git remote add origin https://github.com/petems/headless-puppet
+git remote add origin https://github.com/petems/headless-puppet-rbenv
 git pull -u origin master
 git submodule init
 git submodule update
