@@ -32,7 +32,6 @@ class puppet {
     user    => 'root',
     hour    => '*/1',
     command => "/bin/echo -e '\\n\\n### CRON HOURLY PUPPET RUN ###\\n' >> /var/log/puppet/cron.log; /bin/echo `date` >> /var/log/puppet/cron.log; /bin/echo -e '\\n\\n';/usr/bin/puppet apply /etc/puppet/manifests/default.pp >> /var/log/puppet/cron.log",
-    require => File[$puppet_logfile],
   }
 
   file { '/var/log/puppet' :
