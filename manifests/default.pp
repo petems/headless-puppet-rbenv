@@ -38,6 +38,12 @@ node default {
     home  => $home_dir,
   }
 
+  rbenv::compile { '1.9.3-p327':
+    user   => $username,
+    home   => $home_dir,
+    global => true,
+  }
+
 }
 
 
