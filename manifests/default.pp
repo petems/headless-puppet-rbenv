@@ -29,7 +29,7 @@ node default {
   class { 'puppet': }
 
   exec {'create-ruby-user':
-    command => 'id -u rubyuser &>/dev/null || /usr/sbin/useradd rubyuser'
+    command => 'id -u rubyuser &>/dev/null || /usr/sbin/useradd rubyuser --base-dir /home/rubyuser'
   }
 
   $username = 'rubyuser'
