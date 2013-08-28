@@ -19,18 +19,20 @@
 #
 node default {
 
-  $username = 'root'
+  Exec {
+    logoutput=>on_failure
+  }
 
   class { 'cron': }
 
   class { 'puppet': }
 
-  if $username == 'root' {
-    $home_dir    = "/root"
+  exec {'create-ruby-user':
+    command => 'id -u rubyuser &>/dev/null || /usr/sbin/useradd rubyuser'
   }
-  else {
-    $home_dir    = "/home/${username}"
-  }
+
+  $username = 'rubyuser'
+  $home_dir = "/home/${username}"
 
   rbenv::install { $username:
     group => $username,
