@@ -20,6 +20,7 @@
 node default {
 
   Exec {
+    path=>'/usr/bin:/bin',
     logoutput=>on_failure
   }
 
