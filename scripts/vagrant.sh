@@ -6,9 +6,13 @@ apt-get upgrade
 apt-get update
 apt-get install git puppet -y
 cd /etc/puppet
-git init
-git remote add origin https://github.com/petems/headless-puppet-rbenv
-git pull -u origin master
-git submodule init
-git submodule update
+if [ -d .git ]; then
+  echo "Repo already setup, pulling changes!"
+else
+  git init
+  git remote add origin https://github.com/petems/headless-puppet-rbenv
+  git pull -u origin master
+  git submodule init
+  git submodule update
+fi;
 puppet apply /etc/puppet/manifests/default.pp --modulepath /etc/puppet/modules
