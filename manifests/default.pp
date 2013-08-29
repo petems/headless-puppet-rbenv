@@ -28,12 +28,14 @@ node default {
 
   class { 'puppet': }
 
-  exec {'create-ruby-user':
-    command => 'id -u rubyuser &>/dev/null || /usr/sbin/useradd rubyuser --base-dir /home/rubyuser'
-  }
+  $username = 'root'
 
-  $username = 'rubyuser'
-  $home_dir = "/home/${username}"
+  if $username == 'root' {
+    $home_dir    = "/root"
+  }
+  else {
+    $home_dir    = "/home/${username}"
+  }
 
   rbenv::install { $username:
     group => $username,

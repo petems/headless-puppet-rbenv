@@ -1,17 +1,20 @@
 #!/bin/bash
 
-echo "### Vagrant provision script... ###"
+echo "Headless Puppet Rbenv Bootstrap Script!"
 
 apt-get upgrade
 apt-get update
 apt-get install git puppet -y
+
 cd /etc/puppet
 if [ -d .git ]; then
-  echo "Git already setup!"
+  git reset --hard
+  git pull
+  git submodule update
 else
   git init
   git remote add origin https://github.com/petems/headless-puppet-rbenv
-  git pull -u origin master
+  git branch --set-upstream origin/master
   git submodule init
   git submodule update
 fi;
