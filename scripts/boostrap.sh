@@ -9,12 +9,12 @@ apt-get install git puppet -y
 cd /etc/puppet
 if [ -d .git ]; then
   git reset --hard
-  git pull
+  git pull origin master
   git submodule update
 else
   git init
   git remote add origin https://github.com/petems/headless-puppet-rbenv
-  git branch --set-upstream origin/master
+  git pull origin master
   git submodule init
   git submodule update
 fi;
